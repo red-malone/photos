@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photos/provider/photo_provider.dart';
+import 'package:photos/screen/favourites.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +29,13 @@ class _HomePageState extends State<HomePage> {
         title: const Text("Photo Gallery"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Favourites(),
+                ),
+              );
+            },
             icon: const Icon(Icons.favorite),
           )
         ],
@@ -43,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                 final photo = photoProvider.photos[index];
                 final isFavorite = photoProvider.isFavorite(photo.id);
                 return ListTile(
-                  leading: Image.network(photo.url),
+                  leading: Image.network('https://placehold.co/600x400.png'),
                   title: Text(photo.title),
                   subtitle: Text(photo.url),
                   trailing: IconButton(
